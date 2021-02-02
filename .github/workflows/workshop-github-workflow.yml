@@ -26,7 +26,20 @@ jobs:
       run: |
         cd DotnetTemplate.Web
         npm t
-    - name: Slack Notification
+    - name: Slack Notification Success
+      if: ${{ success() }}
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_NOTIFY }}
+    - name: Slack Notification Failure
+      if: ${{ failure() }}
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_NOTIFY }}
+        SLACK_MESSAGE: "Build or tests failed!"
+    - name: Slack Notification Cancelled
+      if: ${{ cancelled() }}
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_NOTIFY }}
+        SLACK_MESSAGE: "Build was cancelled"
