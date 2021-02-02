@@ -57,6 +57,9 @@ pipeline {
             }
         }
 
-        stage('Slack Notify'){ slackSend color: "good", message: "Build Success" }
+        stage('Slack Notify'){
+            steps {
+                slackSend color: "good", message: "Build Success"
+            }
     }
 }
