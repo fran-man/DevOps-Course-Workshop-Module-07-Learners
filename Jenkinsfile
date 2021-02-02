@@ -61,5 +61,6 @@ pipeline {
             steps {
                 slackSend color: "good", message: "Build Success"
             }
+        }
     }
 }
