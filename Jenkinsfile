@@ -30,5 +30,27 @@ pipeline {
                 }
             }
         }
+
+        stage('.NET Build and Test') {
+            agent {
+                docker { image 'mcr.microsoft.com/dotnet/sdk:3.1' }
+            }
+
+            stages {
+                stage('.NET Build') {
+                    steps {
+                        sh 'echo \'.NET Build\''
+                        sh 'dotnet build'
+                    }
+                }
+
+                stage('.NET Test') {
+                    steps {
+                        sh 'echo \'.NET Test\''
+                        sh 'dotnet test'
+                    }
+                }
+            }
+        }
     }
 }
