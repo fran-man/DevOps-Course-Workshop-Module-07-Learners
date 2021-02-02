@@ -8,8 +8,10 @@ pipeline {
             steps {
                 sh 'echo \'Node Tests\''
                 sh 'pwd'
+                sh 'ls'
                 sh 'cd DotnetTemplate.Web'
                 sh 'pwd'
+                sh 'ls'
                 sh 'npm install'
                 sh 'npm run build'
                 sh 'npm run lint'
