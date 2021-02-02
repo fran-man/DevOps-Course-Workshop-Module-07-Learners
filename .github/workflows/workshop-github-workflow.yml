@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Mod7CI
 on: [push]                      # Will make the workflow run every time you push to any branch
 
 jobs:
