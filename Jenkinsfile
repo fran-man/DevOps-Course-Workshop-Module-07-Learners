@@ -56,5 +56,7 @@ pipeline {
                 }
             }
         }
+
+        stage('Slack Notify'){ slackSend color: "good", message: "Build Success" }
     }
 }
