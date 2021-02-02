@@ -56,11 +56,16 @@ pipeline {
                 }
             }
         }
+    }
 
-        stage('Slack Notify'){
-            steps {
-                slackSend color: "good", message: "Build Success"
-            }
-        }
+    post {
+       // only triggered when blue or green sign
+       success {
+           slackSend color: "good", message: "Build Success"
+       }
+       // triggered when red sign
+       failure {
+           slackSend color: "bad", message: "Build Failure!"
+       }
     }
 }
