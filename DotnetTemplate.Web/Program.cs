@@ -14,7 +14,7 @@ namespace DotnetTemplate.Web
             try
             {
                 Log.Information("Starting up");
-                CreateHostBuilder(args).Build().Run();
+                CreateHostBuilder(ardgs).Build().Run();
             }
             catch (Exception exception)
             {
