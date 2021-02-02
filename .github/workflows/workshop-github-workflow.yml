@@ -37,6 +37,7 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_NOTIFY }}
         SLACK_MESSAGE: "Build or tests failed!"
+        SLACK_COLOR: #000000
     - name: Slack Notification Cancelled
       if: ${{ cancelled() }}
       uses: rtCamp/action-slack-notify@v2
