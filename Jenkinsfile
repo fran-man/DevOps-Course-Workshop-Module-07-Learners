@@ -7,15 +7,13 @@ pipeline {
             }
             steps {
                 sh 'echo \'Node Tests\''
-                sh 'pwd'
-                sh 'ls'
-                sh 'cd DotnetTemplate.Web'
-                sh 'pwd'
-                sh 'ls'
-                sh 'npm install'
-                sh 'npm run build'
-                sh 'npm run lint'
-                sh 'npm t'
+                dir("DotnetTemplate.Web") {
+                    sh 'pwd'
+                    sh 'npm install'
+                    sh 'npm run build'
+                    sh 'npm run lint'
+                    sh 'npm t'
+                }
             }
         }
     }
