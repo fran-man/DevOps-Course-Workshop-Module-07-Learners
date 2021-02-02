@@ -19,6 +19,10 @@ jobs:
        npm install
        npm run build
     - name: Run TS Linter
-      run: npm run lint
+      run: |
+        cd DotnetTemplate.Web
+        npm run lint
     - name: Run TS Tests
-      run: npm t
+      run: |
+        cd DotnetTemplate.Web
+        npm t
