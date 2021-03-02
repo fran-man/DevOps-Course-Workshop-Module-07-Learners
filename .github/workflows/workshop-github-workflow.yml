@@ -44,6 +44,12 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_NOTIFY }}
         SLACK_MESSAGE: "Build was cancelled"
+  docker:
+    name: Docker Push
+    runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v2
     - name: Build and Push to Docker Hub
       uses: docker/build-push-action@v1
       with:
@@ -51,4 +57,4 @@ jobs:
         password: ${{ secrets.DOCKER_PASS }}
         repository: georgefrancis/dotnettemplate
         tag_with_ref: true
-        tags: "latest,$GITHUB_SHA"
+        tags: "latest"
