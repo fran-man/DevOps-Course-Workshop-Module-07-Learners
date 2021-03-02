@@ -46,6 +46,7 @@ jobs:
         SLACK_MESSAGE: "Build was cancelled"
   docker:
     name: Docker Push
+    needs: build
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     if: github.ref == 'refs/heads/main'
     steps:
