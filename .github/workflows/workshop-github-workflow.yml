@@ -51,4 +51,4 @@ jobs:
         password: ${{ secrets.DOCKER_PASS }}
         repository: georgefrancis/dotnettemplate
         tag_with_ref: true
-        tags: "latest"
+        tags: "latest,$GITHUB_SHA"
