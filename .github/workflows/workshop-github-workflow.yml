@@ -46,6 +46,7 @@ jobs:
         SLACK_MESSAGE: "Build was cancelled"
   docker:
     name: Docker Push
+    needs: build
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     if: github.ref == 'refs/heads/main'
     steps:
@@ -58,3 +59,15 @@ jobs:
         repository: georgefrancis/dotnettemplate
         tag_with_ref: true
         tags: "latest"
+  heroku:
+    name: Heroku deploy
+    needs: docker
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      with:
+        heroku_api_key: ${{secrets.HEROKU_KEY}}
+        heroku_app_name: "gf-dotnettemplate"
+        heroku_email: ${{secrets.GF_EMAIL}}
